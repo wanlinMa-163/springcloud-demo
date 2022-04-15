@@ -4,17 +4,6 @@ server:
 spring:
   application:
     name: Gateway
-  cloud:
-    gateway:
-      discovery:
-        locator:
-          enabled: true
-          lower-case-service-id: true
-      routes:
-        - id: bss-crm-http
-          uri: lb://bss-crm-http
-          predicates:
-            - Path=/**
 # eureka
 eureka:
   instance:
@@ -24,7 +13,7 @@ eureka:
   client:
     registry-fetch-interval-seconds: 5
     service-url:
-      defaultZone: http://10.159.36.21:8761/eureka/,http://10.159.36.22:8761/eureka/
+      defaultZone: http://localhost:8761/eureka/
 management:
   endpoints:
     web:
