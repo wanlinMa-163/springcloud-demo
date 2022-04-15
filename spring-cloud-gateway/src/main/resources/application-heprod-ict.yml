@@ -1,0 +1,35 @@
+server:
+  port: 38824
+
+spring:
+  application:
+    name: Gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: bss-crm-http
+          uri: lb://bss-crm-http
+          predicates:
+            - Path=/**
+# eureka
+eureka:
+  instance:
+    lease-expiration-duration-in-seconds: 15
+    lease-renewal-interval-in-seconds: 5
+    prefer-ip-address: true
+  client:
+    registry-fetch-interval-seconds: 5
+    service-url:
+      defaultZone: http://10.159.36.21:8761/eureka/,http://10.159.36.22:8761/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
